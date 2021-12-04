@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>_3_December</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Binaries.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Binaries.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

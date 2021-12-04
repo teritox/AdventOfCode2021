@@ -8,7 +8,7 @@ namespace _3_December
 {
     public class Decoder
     {
-        public static string GammaDecoder(List<string> binaries)
+        public static string GetGammaRate(List<string> binaries)
         {
             string[,] binaryArray = new string[binaries.Count, binaries[0].Length];
             int counter = 0;
@@ -19,7 +19,7 @@ namespace _3_December
                 {
                     binaryArray[counter, i] = binary[i].ToString();
                 }
-                    counter++;
+                counter++;
             }
 
             string gammaRate = "";
@@ -48,7 +48,7 @@ namespace _3_December
                 {
                     gammaRate += "0";
                 }
-                else if(ones > zeros)
+                else if (ones > zeros)
                 {
                     gammaRate += "1";
                 }
@@ -57,7 +57,7 @@ namespace _3_December
             return gammaRate;
         }
 
-        public static string EpsilonDecoder(List<string> binaries)
+        public static string GetEpsilonRate(List<string> binaries)
         {
             string[,] binaryArray = new string[binaries.Count, binaries[0].Length];
             int counter = 0;
@@ -105,5 +105,92 @@ namespace _3_December
 
             return epsilonRate;
         }
+
+        public static string GetOxygenGeneratorRating(List<string> binaries)
+        {
+            List<string> oxygenList = binaries;
+
+            while (oxygenList.Count > 1)
+            {
+                for (int i = 0; i < oxygenList[0].Length; i++)
+                {
+                    int zeros = 0;
+                    int ones = 0;
+
+                    foreach (var binary in oxygenList)
+                    {
+                        if (binary[i] == '0')
+                        {
+                            zeros++;
+                        }
+                        else if (binary[i] == '1')
+                        {
+                            ones++;
+                        }
+                    }
+
+                    if (zeros > ones)
+                    {
+                        oxygenList = oxygenList.Where(c => c[i].ToString() == "0")
+                            .ToList();
+                    }
+                    else if (ones > zeros || ones == zeros)
+                    {
+                        oxygenList = oxygenList.Where(c => c[i].ToString() == "1")
+                            .ToList();
+                    }
+
+                }
+            }
+
+            return oxygenList.FirstOrDefault();
+
+        }
+
+
+        public static string GetCO2ScrubberRating(List<string> binaries)
+        {
+            List<string> CO2List = binaries;
+            int length = CO2List[0].Length;
+
+
+            while (CO2List.Count > 1)
+            {
+                for (int i = 0; i < length; i++)
+                {
+                    int zeros = 0;
+                    int ones = 0;
+
+                    foreach (var binary in CO2List)
+                    {
+                        if (binary[i] == '0')
+                        {
+                            zeros++;
+                        }
+                        else if (binary[i] == '1')
+                        {
+                            ones++;
+                        }
+                    }
+
+                    if (zeros > ones && ones > 0)
+                    {
+                        CO2List = CO2List.Where(c => c[i].ToString() == "1")
+                            .ToList();
+
+                    }
+                    else if ((ones > zeros || ones == zeros) && zeros > 0 )
+                    {
+                        CO2List = CO2List.Where(c => c[i].ToString() == "0")
+                            .ToList();
+                    }
+
+                }
+            }
+
+            return CO2List.FirstOrDefault();
+
+        }
     }
+
 }

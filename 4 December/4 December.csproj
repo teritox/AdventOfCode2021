@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>_4_December</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="BingoFile.txt" />
+    <None Remove="BingoNumbers.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="BingoFile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BingoNumbers.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
